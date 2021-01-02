@@ -3,6 +3,11 @@ function [rhom, lambda]=SiStER_get_density(im,Tm,MAT,ym,PARAMS, GEOM, xm, topo_x
 % obtain density from temperature and material identity
 % 
 % edited by B. Klein, 9/20/2016 to remove struct indexing concatenating
+% 
+% I. Hamdani (2017-2020). changed function signature.
+% 		the function returns also the pore pressure ratio (hydrostatic pressure / lithostatic pressure).
+% 		only obove the salt layer
+	
 
 T0=0;
 rhom = zeros(size(im));

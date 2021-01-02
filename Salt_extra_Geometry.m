@@ -1,3 +1,7 @@
+% This script is called by SiStER_initialize. and used to run special geometry for the salt
+%	that is not supported by the original code
+%	I. Hamdani 2017-2020
+
 salt = GEOM(wedge_phase_n);
 sed = GEOM(sed_phase_n);
 

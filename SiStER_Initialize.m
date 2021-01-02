@@ -1,4 +1,8 @@
 % SiStER Initialize
+% I. Hamdani (2017-2020) added:
+%  	the option to run extra geometry features 
+% 	add initial noise to plastic strain  
+% 	track the sticky layer sediment interface
 
 PARAMS.Nphase = Nphase; % for convenience
 

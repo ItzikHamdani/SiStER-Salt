@@ -2,6 +2,7 @@
 % SiStER_UPDATE_RHEOLOGY
 % calculates visco-elasto-plastic rheology terms on shear and normal nodes
 % G.Ito 8/20
+% I. Hamdani 2017-2020 changed yield stress to acount for pore pressure
 %==========================================================================
 
 
@@ -16,8 +17,8 @@ if (PARAMS.YNPlas==1)
     pnn(p<0)=0;
 %     yield_s=(Cohes_s+Mu_s.*ps).*cos(atan(Mu_s));
 %     yield_n=(Cohes_n+Mu_n.*pnn).*cos(atan(Mu_n));
-    yield_s=(Cohes_s+Mu_s_eff.*ps).*cos(atan(Mu_s));
-    yield_n=(Cohes_n+Mu_n_eff.*pnn).*cos(atan(Mu_n));
+    yield_s=(Cohes_s+Mu_s_eff.*ps).*cos(atan(Mu_s)); % adapted for pore pressure
+    yield_n=(Cohes_n+Mu_n_eff.*pnn).*cos(atan(Mu_n)); % adapted for pore pressure
     if (PARAMS.YNElast==1) % elastic strain rate needs to be removed from total strain
         eta_plas_s=0.5.*yield_s./max(epsII_s-(yield_s-sqrt(sxxOLD_s.^2+sxyOLD.^2))./(2.*Gs.*dt_m),min(epsII_s(:))*1e-6);  
         eta_plas_n=0.5.*yield_n./max(epsII_n-(yield_n-sqrt(sxxOLD.^2+sxyOLD_n.^2))./(2.*Gn.*dt_m),min(epsII_n(:))*1e-6); 

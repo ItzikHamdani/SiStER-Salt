@@ -1,4 +1,9 @@
 % sister_timepoints
+% this script is used to run commands/scripts based on specified timepoints if needed
+% the cases codes should be given as an array in the SiStER_Input_File and
+% and the corresponding "actions" should be called here.
+% I. Hamdani 2017-2020
+
 switch timepoint
     case 1 
         %PARAMS.SLOPE_ANGLE = 0.3;

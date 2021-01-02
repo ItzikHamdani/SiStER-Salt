@@ -2,6 +2,7 @@
 % Get material properties on nodes from advected properties of markers
 % G.Ito 8/16 - replaces previous version, which relied on marker viscosity
 % for Picard iterations (J.-A.O.)
+% I. Hamdani - adapted for pore pressure
 %=========================================================================
 
 % PHASE PROPORTIONS AT NORMAL AND SHEAR NODES. G.Ito 8/16
@@ -21,7 +22,7 @@
 % phase_s=n2interp(1).data;
 % phase_s=round(phase_s*1e10)/1e10; %prevents a case in which phase_n>NPhase
 
-% GET MARKER DENSITIES 
+% GET MARKER DENSITIES adapted for pore pressure I. Hamdani 2017-2020
 [rhom, lambda]=SiStER_get_density(im,Tm,MAT,ym,PARAMS, GEOM, xm, topo_x, topo_y);
 % pass density to nodes
 [n2interp] = SiStER_interp_markers_to_shear_nodes(xm,ym,icn,jcn,qd,x,y,rhom);
@@ -42,7 +43,7 @@ Cohes_n=n2interp(1).data;
 [n2interp] = SiStER_interp_markers_to_shear_nodes(xm,ym,icn,jcn,qd,x,y,cohes);
 Cohes_s = n2interp(1).data;  
 
-% GET FRICTION BASED ON MARKERS J.A. Olive 4/17
+% GET FRICTION BASED ON MARKERS J.A. Olive 4/17 
 [fric]=SiStER_get_friction(im,ep,MAT); % friction depends on plastic strain TODO
 
 % [fric]=SiStER_get_friction(im,ep,MAT); % friction depends on plastic strain TODO
@@ -51,7 +52,7 @@ Mu_n=n2interp(1).data;
 [n2interp] = SiStER_interp_markers_to_shear_nodes(xm,ym,icn,jcn,qd,x,y,fric);
 Mu_s = n2interp(1).data; 
 
-% GET Effective FRICTION
+% GET Effective FRICTION adapted for pore pressure I. Hamdani 2017-2020
 fric_eff = fric .* (1-lambda);
 [n2interp] = SiStER_interp_markers_to_normal_nodes(xm,ym,icn,jcn,x,y,fric_eff);
 Mu_n_eff=n2interp(1).data;
